@@ -35,3 +35,7 @@ npm-debug.log
 
 # Formatter And Dialyzer
 .formatter.exs
+
+# Ftelixir tables
+*_table
+indexes
