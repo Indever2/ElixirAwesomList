@@ -23,4 +23,6 @@ If all tests passed you can run the phoenix server with `mix phx.server`.
 
 Than go to [`localhost:3999`](http://localhost:3999) from your browser and enjoy the show.
 
+> If everything installed correctly packages will appear in 20-40 seconds (according to your internet connection, power of hardware and database tuning configuration).
+
 Created by Ivan Krivtsov, 2020, according to the [`FunBox Elixir Technical Test`](https://dl.funbox.ru/qt-elixir.pdf) 
