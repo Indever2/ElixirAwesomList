@@ -1,48 +1,58 @@
 <section class="phx-hero">
-  <h1><%= gettext "Welcome to %{name}!", name: "Phoenix" %></h1>
-  <p>Peace of mind from prototype to production</p>
+  <p>Lets find some fresh and funny Elixir libraries for you</p>
 
-  <form phx-change="suggest" phx-submit="search">
-    <input type="text" name="q" value="<%= @query %>" placeholder="Live dependency search" list="results" autocomplete="off"/>
-    <datalist id="results">
-      <%= for {app, _vsn} <- @results do %>
-        <option value="<%= app %>"><%= app %></option>
-      <% end %>
-    </datalist>
-    <button type="submit" phx-disable-with="Searching...">Go to Hexdocs</button>
+  <form phx-change="search_input">
+    <input type="text" name="q" value="<%= @query %>" placeholder="Live search" autocomplete="off"  phx-debounce="200"/>
+
+    <button type="submit" style="display: none;"></button> <!-- to prevent uncatched enter pressing -->
+  </form>
+
+  <form phx-change="min_stars_input">
+    <div class="line">
+
+      <div class="one-line-input" style="margin-right:5em">
+        <label for="min_stars_input">min &#11088;</label>
+        <input name="min_stars" id="min_stars_input" type="number" value="<%= @min_stars %>"  phx-debounce="200"/>
+      </div>
+      <div class="one-line-checkbox">
+        <input id="ignore_categories_cb" type="checkbox" phx-click="ignore_sections_click"
+        <%= if @ignore_sections? do %>
+          checked="checked"
+        <% end %>
+        />
+        <label for="ignore_categories_cb">no sections</label>
+      </div>
+      <div class="sort-select">
+        <div class="select-option">
+          <input name="sort" type="radio" class="custom-radio" id="sort_method_name" value="name"
+          phx-click="order_changed" phx-value-orderby="name"
+            <%= if @orderby == "name" do %>
+              checked="checked"
+            <% end %>
+          />
+          <label for="sort_method_name">A &#8594; Z</label>
+        </div>
+        <div class="select-option">
+          <input name="sort" type="radio" class="custom-radio" id="sort_method_stars" value="stars"
+            phx-click="order_changed" phx-value-orderby="stars"
+            <%= if @orderby == "stars" do %>
+               checked="checked"
+            <% end %>
+          />
+          <label for="sort_method_stars"><span style="font-size: 1em">&#11088</span> &#8594; <span style="font-size: 0.8em">&#11088</span> </label>
+        </div>
+      </div>
+
+    </div> <!-- line -->
   </form>
 </section>
 
 <section class="row">
-  <article class="column">
-    <h2>Resources</h2>
-    <ul>
-      <li>
-        <a href="https://hexdocs.pm/phoenix/overview.html">Guides &amp; Docs</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix">Source</a>
-      </li>
-      <li>
-        <a href="https://github.com/phoenixframework/phoenix/blob/v1.5/CHANGELOG.md">v1.5 Changelog</a>
-      </li>
+  <section class="column">
+    <ul class="main-list">
+      <%= for item <- @items do %>
+        <li><%= live_component @socket, ElixirAwesomeListWeb.PageLive.ItemComponent, item: item %></li>
+      <% end %>
     </ul>
-  </article>
-  <article class="column">
-    <h2>Help</h2>
-    <ul>
-      <li>
-        <a href="https://elixirforum.com/c/phoenix-forum">Forum</a>
-      </li>
-      <li>
-        <a href="https://webchat.freenode.net/?channels=elixir-lang">#elixir-lang on Freenode IRC</a>
-      </li>
-      <li>
-        <a href="https://twitter.com/elixirphoenix">Twitter @elixirphoenix</a>
-      </li>
-      <li>
-        <a href="https://elixir-slackin.herokuapp.com/">Elixir on Slack</a>
-      </li>
-    </ul>
-  </article>
+  </section>
 </section>

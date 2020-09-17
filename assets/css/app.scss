@@ -89,3 +89,147 @@
   display: block;
   margin: -1rem 0 2rem;
 }
+
+.main-list {
+  list-style-type: none;
+  list-style-image: none;
+}
+.nested-list {
+  list-style-type: none;
+  list-style-image: none;
+}
+
+.newly-updated {
+  animation: newly-updated-in 3s;
+  border-radius: 15px;
+  padding: 3px 15px 3px 15px;
+}
+
+@keyframes newly-updated-in{
+  from {
+    background-color: rgb(255, 211, 211);
+  }
+  to {
+    background-color: rgb(255, 255, 255);
+  }
+}
+
+.item-name {
+  border-radius: 4px;
+  color: rgb(27, 25, 25);
+  text-decoration: underline;
+}
+.item-description {
+  border-radius: 4px;
+  color: rgb(141, 130, 130);
+}
+.item-stars {
+  border-radius: 4px;
+  padding: 2px 5px 2px 5px;
+  background-color: rgb(253, 253, 226);
+}
+.item-calendar {
+  border-radius: 4px;
+  padding: 2px 5px 2px 5px;
+  background-color: rgb(255, 247, 252);
+}
+.package-item {
+  color: rgb(27, 25, 25);
+  border-radius: 15px;
+  padding: 3px 15px 3px 15px;
+}
+
+.line {
+  display: flex;
+  align-items: center;
+}
+
+.one-line-input {
+  display: flex;
+  align-items: center;
+
+  border-radius: 20px;
+  background-color: rgba(250, 109, 109, 0.185);
+  padding: 3px 15px 3px 8px;
+
+  input {
+    display: block;
+    position: relative;
+    max-width: 7em;
+    margin: 0;
+    height: 2em;
+    min-width: 3em;
+  }
+  label {
+    display: block;
+    padding: 4px;
+    margin: 0;
+    position: relative;
+    float: left;
+  }
+}
+
+.one-line-checkbox {
+  position: relative;
+  display: block;
+  align-items: center;
+ 
+  input {
+    display: none;
+    position: relative;
+    margin: 0;
+  }
+  input:checked +label {
+    background-color: #ffefc3;
+  }
+
+  label {
+    cursor: pointer;
+    margin-left: 15px;
+    padding: 4px;
+    margin: 0;
+    position: relative;
+    float: left;
+    transition: all ease-in 200ms;
+    border-radius: 20px;
+    padding: 3px 8px 3px 8px;
+  }
+  label:hover {
+    background-color: snow;
+  }
+}
+
+.sort-select {
+  display: flex;
+
+  .select-option {
+    margin-left: 15px;
+    position: relative;
+    display: block;
+    align-items: center;
+  }
+ 
+  input:checked +label {
+    background-color: #cad8f8;
+    border-radius: 20px;
+    padding: 3px 8px 3px 8px;
+  }
+  input {
+    display: none;
+    position: relative;
+    margin: 0;
+  }
+  label {
+    cursor: pointer;
+    padding: 4px;
+    position: relative;
+    float: left;
+    border-radius: 20px;
+    padding: 3px 8px 3px 8px;
+    margin: 0;
+    transition: all ease-in 200ms;
+  }
+  label:hover {
+    background-color: snow;
+  }
+}

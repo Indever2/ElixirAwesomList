@@ -1,15 +1,23 @@
 defmodule ElixirAwesomeList.Scrapper do
-  use GenServer
+  use Supervisor
   require Logger
 
   import ElixirAwesomeList.PipelineContextProvider
 
-  def init(attrs), do: {:ok, attrs}
+  @impl true
+  def init(_attrs) do
+    children = [
+      {ElixirAwesomeList.Scrapper.Creator, [interval: 1000 * 60 * 60 * 24]}, # Checking for the new packages every hour
+      {ElixirAwesomeList.Scrapper.PackageInfoUpdater, []}, # Will be executed when Creator finish its task
+      {ElixirAwesomeList.Scrapper.PackageCommitInfoUpdater, []} # Will be executed when Creator finish its task
+    ]
+
+    Supervisor.init(children, strategy: :one_for_one, name: ScrapperSupervisor)
+  end
   def start_link(init_arg) do
     Logger.info("[#{__MODULE__}]: start link!")
-    GenServer.start_link(__MODULE__, init_arg, name: __MODULE__)
+    Supervisor.start_link(__MODULE__, init_arg, name: __MODULE__)
   end
-
 
   @doc """
   Parses markdown file and extracts all packages.

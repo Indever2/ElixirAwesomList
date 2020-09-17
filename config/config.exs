@@ -28,7 +28,9 @@ config :phoenix, :json_library, Jason
 
 # Scrapper config
 config :elixir_awesome_list, ElixirAwesomeList.Scrapper,
-  git_hub_api_root: "https://api.github.com/"
+  git_hub_api_root: "https://api.github.com/"#,
+  #git_hub_api_username: "Username",
+  #git_hub_api_password: "Password"
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
